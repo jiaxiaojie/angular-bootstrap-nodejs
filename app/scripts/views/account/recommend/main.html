@@ -1,0 +1,70 @@
+<div class="scrollable">
+	<div class="scrollable-content recommend-menu">
+		<div class="recommend-menu-01">
+			<img src="../images/app/recommmend_02.png">
+			<p>	每邀请1位好友，<br>
+				好友注册并开通第三方资金托管账户，<br>
+				您可获得<span>25</span>元现金券</p>
+		</div>
+		<div class="recommend-menu-02">
+			<img src="../images/app/recommmend_03.jpg">
+			<p>	邀请的好友首次投资，<br>
+				您可获得现金<span>2.88</span>元/人，<br>
+				还可获得好友首次投资额的<span>1‰</span>现金
+				奖励。</p>
+			
+		</div>
+		<div class="recommend-menu-03">
+			<img src="../images/app/recommmend_04.jpg">
+			<p>用邀请5位及以上好友注册并投资，<br>
+				您将额外获得奖励<span>200</span>元现金券</p>
+		</div>
+		<div class="recommend-menu-04">
+			<img src="../images/app/recommmend_05.jpg">
+			<p>注：投资项目不包括“活花生”</p>
+		</div>
+		<div class="recommend-menu-btn">
+			<a class="btn btn-danger btn-lg" ng-if="!hasLogin()"  ng-click="getCommon().toLogin()">邀请好友赢大奖</a>
+			<a class="btn btn-danger btn-lg" ng-if="hasLogin() && !getCommon().inApp()" ui-turn-on="invitation">邀请好友赢大奖</a>
+			<a class="btn btn-danger btn-lg" ng-if="hasLogin() && getCommon().inApp()" ng-click="appShare()">邀请好友赢大奖</a>
+		</div>
+
+		<!-- 2015.12.3效果图修改 -->
+		<!-- <div class="recommend-menu-column">
+			<p class="text-center">
+				<span class="text-danger font-size-18" ui-sref="account.recommend.detail" ng-bind="earningAmount">0</span>
+				<small class="text-muted font-size-12"> 奖励现金(元)</small>
+			</p>
+			<p class="text-center">
+				<span class="text-danger font-size-18" ui-sref="account.recommend.detail({tab:2})" ng-bind="earningTicketAmount" >0</span>
+				<small class="text-muted font-size-12"> 现金券奖励(元)</small>
+			</p>
+		</div> -->
+		<!-- <ul class="list-group menu hs-margin-bottom-0">
+			<li class="list-group-item hs-margin-bottom-7" ui-sref="account.recommend.my">
+				<span>我的邀请</span>
+				<i class="menuarrow menuarrow-right pull-right"></i>
+			</li>
+			<li class="list-group-item">
+				<span>奖励规则</span>
+			</li>
+		</ul>
+		<div class="text-display">
+			<p class="font-size-12">1.好友注册时在推荐人栏填写您的手机号码；<br>
+				2.邀请好友注册并开通托管账户，您可获得现金券25元/人；邀请5位及以上好友注册并完成交易，您将额外获得200元现金券；<br>
+				3.邀请的好友在活动期间注册并投资，您可获得现金奖励2.88元/人以及好友首次投资金额1‰的现金奖励。</p>
+		</div> -->
+		<!-- 2015.12.3效果图修改 -->
+
+	</div>
+</div>
+<div ui-content-for="navbarAction">
+	<span class="navbarRight" ui-sref="account.recommend.my">我的邀请</span>
+</div>
+<div ui-content-for="modals">
+	<div class="modal my-invitation" ui-turn-off="invitation" ui-if='invitation' ui-state='invitation' ui-default="false">
+		<div class="modal-backdrop in">
+			<p><img src="../images/app/recommmend_pop.png"><span ui-turn-off="invitation"></span></p>
+		</div>
+	</div>
+</div>

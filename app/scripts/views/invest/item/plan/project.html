@@ -1,0 +1,22 @@
+<div class="scrollable">
+	<div class="scrollable-content">
+		<table class="table table-bg-white">
+			<thead>
+				<tr class="active">
+					<td class="text-left">还款时间</td>
+					<td class="text-center">还款金额(元)</td>
+					<td class="text-right">还款状态</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="projectRepayPlan in projectRepayPlanList">
+					<td class="text-left">
+						<span class="show" ng-bind="projectRepayPlan.planDate">2015-12-12</span>
+					</td>
+					<td class="text-center" ng-bind="projectRepayPlan.planMoney | number:2">418.000.00</td>
+					<td class="text-right" ng-bind="projectRepayPlan.statusName">待还</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

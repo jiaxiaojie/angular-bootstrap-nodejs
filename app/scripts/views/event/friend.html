@@ -1,0 +1,54 @@
+<div class="scrollable">
+    <div class="scrollable-content friend">
+        <div class="friend-img"><img src="../images/app/friend/friend_01.png" alt=""></div>
+        <div class="friend-img friend-btn">
+            <img src="../images/app/friend/friend_03.png" alt="">
+            <span ng-if="data.inApp">
+                <a ng-if="data.hasLogin" ng-click="appShare()">立即邀请好友</a>
+                <a ng-if="!data.hasLogin" ng-click="getCommon().toLogin()">立即邀请好友</a>
+            </span>
+            <span ng-if="!data.inApp">
+                <a ng-if="data.hasLogin && data.isWeChat" ui-turn-on="invitation">立即邀请好友</a>
+                <a ng-if="data.hasLogin && !data.isWeChat" ui-sref="event.download2">下载APP立即参与</a>
+                <a ng-if="!data.hasLogin" ui-sref="event.download2">下载APP立即参与</a>
+            </span>
+        </div>
+        <div class="friend-img"><img src="../images/app/friend/friend_04.png" alt=""></div>
+        <div class="friend-img"> <img src="../images/app/friend/friend_05.png" alt=""> </div>
+        <div class="friend-img"><img src="../images/app/friend/friend_06.png" ></div>
+        <div class="friend-img"><img src="../images/app/friend/friend_07.png" alt=""></div>
+        <div class="friend-img"><img src="../images/app/friend/friend_08.png" alt=""></div>
+        <div class="friend-img">
+            <img ng-if="data.inApp" src="../images/app/friend/friend_09.png" alt="" ui-sref="account.recommend.main({_hideNavbar:'1',_hideNavbarBottom:'1'})">
+            <img ng-if="!data.inApp" src="../images/app/friend/friend_09.png" alt="" ui-sref="account.recommend.main">
+        </div>
+        <div class="friend-img"><img src="../images/app/friend/friend_10.png" alt=""></div>
+        <div class="friend-img friend-btn"><img src="../images/app/friend/friend_11.png" alt="">
+            <div class="absolute text-center code">
+                <img ng-if="data.isWeChat" src="../images/app/friend/QR-code-1.png">
+                <img ng-if="!data.isWeChat" src="../images/app/friend/QR-code-2.png">
+                <p class="hs-padding-top-10" ng-if="data.isWeChat">长按指纹 → 识别二维码 → 下载APP</p>
+                <p class="hs-padding-top-10" ng-if="!data.isWeChat">扫一扫，下载APP</p>
+            </div>
+        </div>
+        <div class="friend-img"><img src="../images/app/friend/friend_13.png" alt=""></div>
+        <div class="friend-img friend-btn" style="height: 200px;"><img src="../images/app/friend/friend_14.png" alt=""> 
+            <div class="absolute">
+                    1、活动时间：2015.12.23-2016.2.29<br>
+                    2、参与用户：花生金服平台所有注册用户<br>
+                    3、奖励条件：每位被邀请的好友在活动期间注册且累计
+         投资额（活期产品除外）≥1000元<br>
+                    4、奖励发放：现金奖励将在好友投资成功后5个工作日内发放至
+         邀请人账户，可在“我的账户”-“可用余额”中查看<br>
+                    5、本活动可与推荐活动叠加，活动解释权归花生金服所有
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal my-invitation" ui-turn-off="invitation" ui-if='invitation' ui-state='invitation' ui-default="false">
+        <div class="modal-backdrop in">
+            <p><img src="../images/app/recommmend_pop.png"><span ui-turn-off="invitation"></span></p>
+        </div>
+    </div>
+</div>

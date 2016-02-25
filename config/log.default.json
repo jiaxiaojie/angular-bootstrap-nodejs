@@ -1,0 +1,13 @@
+{
+  "enabled" : false,
+  "defaultLevel" : "log",
+  "consolePrint":true,
+  "alertLevel":"debug",
+  "appenders":[
+    {
+      "levels":["warn","error"],
+      "remote" :"http://localhost:3000/log"
+    }
+  ],
+  "allowReplace":true
+}

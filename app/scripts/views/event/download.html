@@ -1,0 +1,30 @@
+<img src='http://sammix.adsame.com/t?z=sammix&id=1210412' height="0"/>
+<div class="scrollable">
+  <div class="scrollable-content">
+	  <div class="download">
+  	<div class="download-01"><img src="../images/app/img_app_slogan.png"></div>
+  	<div class="download-02"><img src="../images/app/qr-code.jpg"></div>
+  	<div class="download-03"><img src="../images/app/codetext.png"></div>
+	  <div class="download-04" ng-if="!ua.isApp && ua.isWeChat">
+		  <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.fdjf.hsbank" class="btn btn-large btn-danger" ng-if="ua.isIOS">立即下载</a>
+		  <a href="" class="btn btn-large btn-danger" ng-if="!ua.isIOS" ui-turn-on="downloadtip">立即下载</a>
+	  </div>
+	  <div class="download-04" ng-if="!ua.isApp && !ua.isWeChat">
+		  <a href="https://itunes.apple.com/cn/app/id1060369794" ng-if="ua.isIOS" class="btn btn-large btn-danger" >立即下载</a>
+		  <a href="https://hsbank360.com/userfiles/release/hsjf_android_release.apk" ng-if="!ua.isIOS" class="btn btn-large btn-danger" >立即下载</a>
+	  </div>
+	  <div class="download-04" ng-if="ua.isApp">
+		  <a ng-click="hsbank.investProject()" class="btn btn-large btn-danger">立即投资</a>
+	  </div>
+	  <div class="download-05" ng-if="!ua.isApp">
+		  <a href="" class="btn btn-large btn-transparent"  ng-click="getCommon().toHome()">进入首页</a></p>
+  	  </div>
+  </div>
+</div>
+</div>
+<div ui-content-for="modals">
+	<div class="modal download-tip" ui-turn-off="downloadtip" ui-if='downloadtip' ui-state='downloadtip' ui-default="false">
+		<div class="modal-backdrop in" ng-if="!ua.isIOS"><img src="../images/rotateDemo/tip-android.png"></div>
+		<div class="modal-backdrop in"  ng-if="ua.isIOS"><img src="../images/rotateDemo/tip-ios.png"></div>
+	</div>
+</div>

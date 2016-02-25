@@ -1,0 +1,88 @@
+<div class="scrollable account-info">
+	<div class="scrollable-content">
+		<ul class="list-group menu">
+		    <li class="list-group-item clearfix">
+		        <span>头像</span>
+		        <!--<i class="menuarrow menuarrow-right pull-right"></i>-->
+		        <a class="icon icon-portrait pull-right">
+					<img ng-src="{{accountInfo.avatar}}" />
+				</a>
+		    </li>
+		    <li class="list-group-item">
+		        <span>昵称</span>
+		        <span class="menu-text-right pull-right" ng-bind="accountInfo.nickname">aobama</span>
+		    </li>
+			<li class="list-group-item" ng-if="accountInfo.hasOpenThirdAccount != '1'">
+		        <span ui-sref="yeepay.register({mobile: accountInfo.mobile})">开通易宝资产托管账户</span>
+		        <i class="menuarrow menuarrow-right" ui-sref="yeepay.register({mobile: accountInfo.mobile})"></i>
+		        <span class="menu-text-right" ui-sref="yeepay.register({mobile: accountInfo.mobile})">未开通</span>
+		    </li>
+		    <li class="list-group-item" ng-if="accountInfo.hasOpenThirdAccount == 1">
+		        <span>姓名</span>
+		        <span class="menu-text-right pull-right" ng-bind="accountInfo.customerName">奥巴马</span>
+		    </li>
+		    <li class="list-group-item"  ng-if="accountInfo.hasOpenThirdAccount == 1">
+		        <span>身份证</span>
+		        <span class="menu-text-right pull-right" ng-bind="accountInfo.certNum">aobama</span>
+		    </li>
+		    <li class="list-group-item" id="mobileLi">
+		        <span>手机号码</span>
+		        <span class="menu-text-right pull-right" ng-bind="getCommon().darkMobile(accountInfo.mobile)">1234567890</span>
+		    </li>
+		    <li class="list-group-item">
+		        <span>电子邮件</span>
+		        <span class="menu-text-right" ng-bind="accountInfo.email">admin@admin.com</span>
+		    </li>
+		    <li class="list-group-item" ng-if="accountInfo.hasBindBankCard != '1'">
+		        <span ng-click="toBindBankCard()">银行卡</span>
+		        <i class="menuarrow menuarrow-right" ng-click="toBindBankCard()"></i>
+		        <span class="menu-text-right" ng-click="toBindBankCard()">未绑卡</span>
+		    </li>
+		    <li class="list-group-item" ng-if="accountInfo.hasBindBankCard == '1'" ui-sref="account.bankcard.myBankCard">
+		        <span>银行卡</span>
+		        <i class="menuarrow menuarrow-right"></i>
+				<span class="menu-text-right">
+					<span class="icon icon-vertical icon-sm icon-bank icon-bank-{{accountInfo.bankCard.bankCode.toLowerCase()}}"></span>
+				</span>
+		    </li>
+		</ul>
+		<ul class="list-group menu">
+		    <li class="list-group-item" ui-sref="account.password()">
+		        <span>登录密码</span>
+		        <i class="menuarrow menuarrow-right pull-right"></i>
+		    </li>
+		</ul>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 hs-margin-bottom-10">
+					<a class="btn btn-danger btn-lg btn-block" ng-click="logout()">退出</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ui-content-for="modals">
+	<div class="modal invest-calculator" ui-if="modalContact" ui-state="modalContact" ui-default="false">
+		<div class="modal-backdrop in"></div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body text-center hs-padding-top-10">
+					<p class="hs-padding-top-10">温馨提示</p>
+					<p><span class="hs-padding-top-10 center-block">您尚未开通易宝资金托管账户，是否立即开通？</span></p>
+				</div>
+				<div class="modal-footer">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-6">
+								<button ui-turn-off="modalContact" class="btn btn-default text-warning">取消</button>
+							</div>
+							<div class="col-xs-6">
+								<a href="" class="btn btn-primary text-warning" ui-sref="yeepay.register({mobile: accountInfo.mobile})">确定</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

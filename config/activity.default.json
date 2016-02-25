@@ -1,0 +1,44 @@
+[
+  {
+    "key": "英文主键",
+    "title": "标题1",
+    "type": "0不跳转,1跳转项目，2跳转内部state，3跳转外部网页",
+    "img": "图片地址",
+    "target": "type等于1表示项目ID，2表示内部state名称，3表示url",
+    "targetParams": "type为2state的参数",
+    "datetime": "时间",
+    "description": "描述",
+    "slide": "boolean是否展示在首页幻灯片"
+  },
+  {
+    "key": "marketing",
+    "title": "",
+    "type": 3,
+    "img": "/activity/marketing/banner.jpg",
+    "target": "/activity/marketing/index.html",
+    "datetime": "",
+    "description": "",
+    "slide": true
+  },
+  {
+    "key": "11",
+    "title": "",
+    "type": 3,
+    "img": "/activity/11/banner.jpg",
+    "target": "/activity/11/index.html",
+    "datetime": "",
+    "description": "",
+    "slide": true
+  },
+  {
+    "key": "safe",
+    "title": "",
+    "type": "2",
+    "img": "/activity/safe/banner.jpg",
+    "target": "more.safe",
+    "targetParams": {},
+    "datetime": "",
+    "description": "",
+    "slide": true
+  }
+]

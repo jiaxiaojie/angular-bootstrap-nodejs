@@ -1,0 +1,62 @@
+<div class="scrollable">
+	<div class="scrollable-content invest-more">
+		<ul class="list-group menu" ui-state='myAccordion' ui-default='true'>
+		    <li class="list-group-item hs-margin-top-10">
+		    	<span>项目名称</span>
+		    	<span class="menu-text-right pull-right" ng-bind="project.projectName">季花生-003</span>
+		    </li>
+		    <li class="list-group-item" ui-toggle="myAccordion">
+		    	<span>项目简介</span>
+				<i class="menuarrow pull-right"  ui-class="{'menuarrow-down':myAccordion==1,'menuarrow-right':myAccordion!=1}"></i>
+		    </li>
+			<div class="text-display text-info" ui-if="myAccordion">
+				<p ng-bind="project.projectIntroduce"></p>
+			</div>
+		    <li class="list-group-item">
+		    	<span>融资方</span>
+		        <span class="menu-text-right pull-right" ng-bind="project.borrowersUser">邦**</span>
+		    </li>
+		    <li class="list-group-item">
+		    	<span>项目区域</span>
+		        <span class="menu-text-right pull-right" ng-bind="project.area">上海</span>
+		    </li>
+		    <li class="list-group-item">
+		    	<span>借款用途</span>
+		        <span class="menu-text-right pull-right" ng-bind="project.useMethod">公司资金周转</span>
+		    </li>
+		    <li class="list-group-item">
+		    	<span>融资金额(元)</span>
+		        <span class="menu-text-right pull-right" ng-bind="project.planAmount">200元</span>
+		    </li>
+		    <li class="list-group-item">
+		    	<span>年化利率</span>
+		        <span class="menu-text-right pull-right">{{project.annualizedRate * 100 | number:1}}%</span>
+		    </li>
+		    <li class="list-group-item">
+		    	<span>计息方式</span>
+		        <span class="menu-text-right pull-right" ng-bind="project.repaymentModeName">等额本息</span>
+		    </li>
+		     <li class="list-group-item">
+		    	<span>投资限额</span>
+		        <span class="menu-text-right pull-right">{{project.startingAmount}}元起投</span>
+		    </li>
+		    <li class="list-group-item">
+		    	<span>投资截止日期</span>
+		        <span class="menu-text-right pull-right" ng-bind="project.biddingDeadline">2015-10-19 10:30:51</span>
+		    </li>
+		    <li class="list-group-item">
+		    	<span>债权转让限制</span>
+		        <span class="menu-text-right pull-right" ng-bind="project.transferConstraint">此项目不允许债权转让</span>
+		    </li>
+		    <li class="list-group-item" ui-set="{'myAccordion': 2}" ui-sref="invest.item.documents({projectId: project.projectId})">
+		    	<span>相关文件</span>
+		    	<i class="menuarrow menuarrow-right pull-right"></i>
+		    </li>
+			<div class="text-display text-info" ui-if="myAccordion == 2">
+				<p>
+					<img ng-src="{{aboutFile}}" ng-repeat="aboutFile in project.aboutFiles" />
+				</p>
+			</div>
+		</ul>
+	</div>
+</div>

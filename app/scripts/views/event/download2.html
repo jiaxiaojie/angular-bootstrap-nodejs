@@ -1,0 +1,28 @@
+<div class="scrollable">
+  <div class="scrollable-content">
+	<div class="download2 container">
+		<h1 class="text-center">花生金服客户端</h1>
+		<div class="row">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4 hs-padding-0 hs-margin-bottom-10"><img src="../images/app/img_iphone@3x.png" alt=""></div>
+			<div class="col-xs-4"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4 text-center hs-padding-0 hs-margin-top-10">
+				<a class="btn btn-danger btn-lg" ng-if="ua.isWeChat && ua.isIOS" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.fdjf.hsbank">下载客户端</a>
+				<a class="btn btn-danger btn-lg" ng-if="ua.isWeChat && !ua.isIOS" ui-turn-on="downloadtip">下载客户端</a>
+				<a class="btn btn-danger btn-lg" ng-if="!ua.isWeChat && ua.isIOS" href="https://itunes.apple.com/cn/app/id1060369794">下载客户端</a>
+				<a class="btn btn-danger btn-lg" ng-if="!ua.isWeChat && !ua.isIOS" href="https://hsbank360.com/userfiles/release/hsjf_android_release.apk">下载客户端</a>
+			</div>
+			<div class="col-xs-4"></div>
+		</div>
+	</div>
+</div>
+</div>
+<div ui-content-for="modals">
+	<div class="modal download-tip" ui-turn-off="downloadtip" ui-if='downloadtip' ui-state='downloadtip' ui-default="false">
+		<div class="modal-backdrop in" ng-if="!ua.isIOS"><img src="../images/app/tip-android.png"></div>
+		<div class="modal-backdrop in"  ng-if="ua.isIOS"><img src="../images/app/tip-ios.png"></div>
+	</div>
+</div>

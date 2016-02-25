@@ -1,0 +1,65 @@
+<div class="scrollable">
+	<div class="scrollable-content">
+		<form class="form-inline" ng-submit="getWithdrawUrl()" novalidate="novalidate">
+			<input type="hidden" ng-model="isUseWithdrawTicket" />
+			<ul class="list-group menu log hs-margin-bottom-10">
+			    <li class="list-group-item">
+			        <span class="icon-group">
+			        	<span class="icon icon-bank-{{accountInfo.bankCard.bankCode.toLowerCase()}} icon-horizontal icon-md icon-circle"></span>
+			        	<span class="icon-txt text-left text-muted">{{accountInfo.bankCard.bankName}}<small style="display: block;" ng-bind="accountInfo.bankCard.cardNo">6124*** ***1234</small></span>
+			        </span>
+			        <!-- <span class="icon icon-explain circle-tip pull-right" tip-popover msg="如需修改绑定的银行卡，请拨打客服电话：400-969-6599" direction="left" fixed-width="228"></span> -->
+			    </li>
+			</ul>
+			<ul class="list-group menu">
+				<li class="list-group-item">
+					<span>可用余额(元)</span>
+					<span class="pull-right" ng-bind="accountInfo.bankCard.amount | number:2"></span>
+				</li>
+			    <li class="list-group-item">
+			    	<div class="container">
+			    		<div class="row">
+			    			<div class="col-xs-6 hs-padding-left-0 hs-padding-right-0">
+			    				<span>提现金额(元)</span>
+			    			</div>
+			    			<div class="col-xs-6 hs-padding-left-0 hs-padding-right-0">
+			    				<span class="pull-right">
+							    	<input type="number" input-number="2" ng-model="amount" class="form-control list-right-input" placeholder="0.00" id="amount">
+							    </span>
+			    			</div>
+			    		</div>
+			    	</div>
+			    </li>
+			    <li class="list-group-item transparent-bg border-bottom-0 withdraw-item">
+			    	<span class="text-info font-size-12">提现手续费:<span ng-if="!isUseWithdrawTicket">2.00</span><span ng-if="isUseWithdrawTicket">0.00</span>元</span>
+					<!--sel nor-->
+			        <span class="icon-group text-info font-size-12 pull-right">
+			        	<span class="icon icon-sm icon-horizontal {{isUseWithdrawTicketClass}}" ng-click="changeUseWithdrawTicket()"></span>
+			        	<span class="icon-txt">提现券:{{accountInfo.bankCard.ticketCount}}张</span>
+			        </span>
+			    </li>
+			</ul>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<!--没有填写内容默认不可点击-->
+						<input type="submit" class="btn btn-danger btn-lg btn-block" ng-if="!(amount > 100000000)" ng-class="{'disabled':!canWith()}" ng-disabled="!canWith()" value="立即提现" />
+						<input type="submit" class="btn btn-danger btn-lg btn-block disabled" ng-if="amount > 100000000" ng-disabled="true" value="提现金额不能大于1亿元" />
+					</div>
+				</div>	
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group text-success font-size-12">
+							<p>预计到账：1-2个工作日(节假日顺延)</p>
+							<p>温馨提示：<br>
+							1.首次投资可获得10张提现券<br>
+							2.可使用花生豆在花生乐园兑换提现券</p>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,87 @@
+<div class="scrollable">
+	<div class="scrollable-content overthrow">
+		<div class="list-body">
+			<div>
+				<!--
+				<ul class="list-group menu">
+				    <li class="list-group-item">
+					    <span class="icon icon-rinancing icon-primary icon-horizontal icon-lg">我要融资</span>
+				        <i class="menuarrow menuarrow-right pull-right"></i>
+				    </li>
+				</ul>
+				-->
+				<ul class="list-group menu">
+				    <!--<li class="list-group-item" ui-sref="activity.list">
+					    <span class="icon-group pull-left">
+					    	<span class="icon icon-activity icon-primary  icon-horizontal icon-lg"></span>
+					    	<i class="icon-txt">活动中心</i>
+					    </span>
+				        <i class="menuarrow menuarrow-right pull-right"></i>
+				    </li>-->
+				    <li class="list-group-item" ui-sref="more.help.main">
+					    <span class="icon-group pull-left">
+					    	<span class="icon icon-help icon-primary  icon-horizontal icon-lg"></span>
+					    	<i class="icon-txt">帮助中心</i>
+					    </span>
+				        <i class="menuarrow menuarrow-right pull-right"></i>
+				    </li>
+				    <li class="list-group-item" ui-sref="more.safe">
+					    <span class="icon-group pull-left">
+					    	<span class="icon icon-risk icon-primary  icon-horizontal icon-lg"></span>
+					    	<i class="icon-txt">安全保障</i>
+					    </span>
+				        <i class="menuarrow menuarrow-right pull-right"></i>
+				    </li>
+				</ul>
+				<ul class="list-group menu">
+				    <li class="list-group-item" ui-sref="more.about()">
+					    <span class="icon-group pull-left">
+					    	<span class="icon icon-about icon-primary  icon-horizontal icon-lg"></span>
+					    	<i class="icon-txt">关于我们</i>
+					    </span>
+				        <i class="menuarrow menuarrow-right pull-right"></i>
+				    </li>
+				    <li class="list-group-item" ui-turn-on="modalContact">
+					    <span class="icon-group pull-left">
+					    	<span class="icon icon-contact icon-primary  icon-horizontal icon-lg"></span>
+					    	<i class="icon-txt">联系客服</i>
+					    </span>
+				        <i class="menuarrow menuarrow-right pull-right"></i>
+				        <span class="menu-text-right text-warning font-size-14">工作日9:00-18:00</span>
+				    </li>
+				</ul>
+			</div>
+			<!--登录后才会显示“退出”按钮-->
+			<div class="container">
+				<div class="row">
+				  <div class="col-xs-12"><a class="btn btn-block btn-danger btn-lg" ng-if="hasLogin()" ng-disabled="!hasLogin()" ng-click="logout()" id="logoutBtn">退出</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ui-content-for="modals">
+	<div class="modal invest-calculator" ui-if="modalContact" ui-state="modalContact" ui-default="false">
+		<div class="modal-backdrop in"></div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body text-center hs-padding-top-10 hs-padding-bottom-10">
+					<p class=""><span class="font-size-20 hs-padding-top-10 hs-padding-bottom-10 center-block">400-969-6599</span></p>
+				</div>
+				<div class="modal-footer">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-6">
+								<button ui-turn-off="modalContact" class="btn btn-default text-warning">取消</button>
+							</div>
+							<div class="col-xs-6">
+								<a href="tel:4009696599" class="btn btn-primary text-warning">呼叫</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

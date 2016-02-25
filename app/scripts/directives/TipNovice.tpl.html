@@ -1,0 +1,27 @@
+<div ng-show="level" class="modal hs-popup">
+    <div class="modal-backdrop in">
+        <img src="../images/app/novicetask_popup_confetti.png">
+    </div>
+    <div class="modal-dialog jewel-box">
+        <div class="modal-top text-center">
+            <img src="../images/app/novicetask_popup_{{level}}.png">
+        </div>
+        <div class="text-danger text-center hs-padding-bottom-10 hs-padding-top-10 hs-padding-left-10 hs-padding-right-10" ng-if="level==1">恭喜你！获得5元现金劵！</div>
+        <div class="text-danger text-center hs-padding-bottom-10 hs-padding-top-10 hs-padding-left-10 hs-padding-right-10" ng-if="level==2">哇~又获得10元现金劵！</div>
+        <div class="text-danger text-center hs-padding-bottom-10 hs-padding-top-10 hs-padding-left-10 hs-padding-right-10" ng-if="level==3">手气真好！10元现金劵已乖乖躺在你的账户里了哦~</div>
+        <div class="text-danger text-center hs-padding-bottom-10 hs-padding-top-10 hs-padding-left-10 hs-padding-right-10" ng-if="level==4">上辈子拯救了银河系么~2.88元现金，200元现金劵，10张提现劵，统统送你啦！</div>
+        <div class="modal-footer transparent-bg hs-padding-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6 hs-padding-top-10 hs-padding-bottom-10">
+                        <button class="btn btn-default text-warning transparent-bg" ng-click="getService('Tip').hideNovice()">返回</button>
+                    </div>
+                    <div class="col-xs-6 hs-padding-top-10 hs-padding-bottom-10">
+                        <a class="btn btn-primary text-warning transparent-bg" ng-if="level!=4" ng-click="getService('$state').includes('account.novice.main')?getService('Tip').hideNovice():getService('$state').go('account.novice.main')">下个任务</a>
+                        <a class="btn btn-primary text-warning transparent-bg" ng-if="level==4" ui-sref="invest.list">继续投资</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

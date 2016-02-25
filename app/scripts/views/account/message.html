@@ -1,0 +1,77 @@
+<div class="scrollable">
+    <div class="scrollable-content mymessage">
+        <ui-state id="messageTab" default="1" ng-init="activeTab=1"></ui-state>
+        <div class="btn-group justified nav-tabs top">
+            <a ui-set="{'messageTab': 1}" ui-class="{'active': messageTab == 1}" class="btn btn-default font-size-16 active" ng-click="activeTab=1">账户消息</a>
+            <a ui-set="{'messageTab': 2}" ui-class="{'active': messageTab == 2}" class="btn btn-default font-size-16" ng-click="activeTab=2">系统消息</a>
+        </div>
+        <loading>
+            <ul class="list-group" ui-if="messageTab == 1">
+                <li class="list-group-item" ng-if="accountMessages.length!=0" ng-repeat="accountMessage in accountMessages" ng-click="openAndRead(accountMessage.messageId,accountMessage.status)">
+                    <div class="row">
+                        <div class="col-xs-6 font-size-16" ng-if="accountMessage.status==2">{{accountMessage.title}}</div>
+                        <div class="col-xs-6 font-size-16" ng-if="accountMessage.status!=2"><b>{{accountMessage.title}}</b></div>
+                        <div class="col-xs-6 text-success text-right">{{accountMessage.createDt}}</div>
+                    </div>
+                    <div class="row hs-padding-top-5">
+                        <div class="col-xs-12 text-success" ng-if="isOpen==false">{{accountMessage.content | limitTo : 25}}......</div>
+                        <div class="col-xs-12 text-success" ng-if="isOpen==true && accountMessage.messageId!=messageId">{{accountMessage.content | limitTo : 25}}......</div>
+                        <div class="col-xs-12 text-success" ng-if="isOpen==true && accountMessage.messageId==messageId">{{accountMessage.content}}</div>
+                    </div>
+                </li>
+                <div class="empty" ng-if="accountMessages.length==0">
+                    <span class="icon-group">
+                        <i class="icon icon-default icon-folder icon-vertical icon-x-lg"></i>
+                        <i class="icon-txt text-success">暂时没有数据哦</i>
+                    </span>
+                </div>
+            </ul>
+        <ul class="list-group" ui-if="messageTab == 2">
+            <li class="list-group-item" ng-if="systemMessages.length!=0" ng-repeat="systemMessage in systemMessages"  ng-click="openAndRead(systemMessage.messageId,systemMessage.status)">
+                <div class="row">
+                    <div class="col-xs-6 font-size-16" ng-if="systemMessage.status==2">{{systemMessage.title}}</div>
+                    <div class="col-xs-6 font-size-16" ng-if="systemMessage.status!=2"><strong>{{systemMessage.title}}</strong></div>
+                    <div class="col-xs-6 text-success text-right">{{systemMessages.createDt}}</div>
+                </div>
+                <div class="row hs-padding-top-5">
+                    <div class="col-xs-12 text-success" ng-if="isOpen==false">{{systemMessage.content | limitTo : 25}}......</div>
+                    <div class="col-xs-12 text-success" ng-if="isOpen==true && systemMessage.messageId!=messageId">{{systemMessage.content | limitTo : 25}}......</div>
+                    <div class="col-xs-12 text-success" ng-if="isOpen==true && systemMessage.messageId==messageId">{{systemMessage.content}}</div>
+                </div>
+            </li>
+            <div class="empty" ng-if="systemMessages.length==0">
+				<span class="icon-group">
+					<i class="icon icon-default icon-folder icon-vertical icon-x-lg"></i>
+					<i class="icon-txt text-success">暂时没有数据哦</i>
+				</span>
+            </div>
+        </ul>
+       </loading>
+    </div>
+</div>
+<div ui-content-for="navbarAction">
+    <span class="navbarRight" ng-click="readAll()">全部已读</span>
+</div>
+<div class="modal invest-calculator" ui-if="modalContact" ui-state="modalContact" ui-default="false">
+    <div class="modal-backdrop in"></div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-head text-center hs-padding-top-10"><b>温馨提示</b></div>
+            <div class="modal-body text-center hs-padding-top-0 hs-padding-bottom-10">
+                <span class="font-size-14 hs-padding-top-10 center-block">您确定要将全部信息标为已读？</span>
+            </div>
+            <div class="modal-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <button ui-turn-off="modalContact" class="btn btn-default text-warning">取消</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <a class="btn btn-primary text-warning" ng-click="readAllConfirm()">确定</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

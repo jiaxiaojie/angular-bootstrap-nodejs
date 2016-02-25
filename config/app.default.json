@@ -1,0 +1,28 @@
+{
+  "apiBaseUrl":"http://139.196.5.141:8080/fd/f/api",
+  "appRootUrl":"http://localhost:3000",
+  "appRoot":"app/",
+  "version":"1.0.0",
+  "deployServer":{
+    "host":"",
+    "port":"",
+    "user":"",
+    "privatekey":"",
+    "path":""
+  },
+  "wechatShare": {
+    "title": "尽管去high，理财有我",
+    "desc": "不怕花钱多，就怕赚钱少，花生金服，你的移动理财专家，赚钱就靠TA！",
+    "imgUrl": "/images/app/logo.png"
+  },
+  "channel":{
+    "ios":"199eac53-ae8b-4c36-a083-71a8802a211c",
+    "android":"d0ae3819-9b9a-46d7-9467-7a0d6ea0e0b0"
+  },
+  "hjxc":{
+    "grantTicket":"http://139.196.5.141:8082/fd_ext/a/channel/interface/grantTicket",
+    "queryTicketInfosByMobile":"http://139.196.5.141:8082/fd_ext/a/channel/interface/queryTicketInfosByMobile",
+    "channelCode":"hjdsh",
+    "agreeCode":"fdext1207"
+  }
+}

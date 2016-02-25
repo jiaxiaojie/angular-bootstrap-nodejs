@@ -1,0 +1,66 @@
+<div class="scrollable">
+  <div class="scrollable-content invest-info">
+	<ul class="list-group menu">
+		<li class="list-group-item">
+			<div class="container hs-padding-left-0 hs-padding-right-0">
+				<div class="row">
+					<div class="col-xs-6">
+						<span class="icon-group pull-left">
+							<i class="icon icon-hs-{{record.projectType}} icon-horizontal icon-md" style=""></i>
+							<i class="icon-txt" ng-bind="record.projectName">新花生-104</i>
+						</span>
+					</div>
+					<div class="col-xs-6 text-right text-warning hs-margin-top-2" ng-bind="record.statusName">收款中</div>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item transparent-bg">
+			<div class="container hs-padding-left-0 hs-padding-right-0">
+				<div class="row hs-margin-top-3 hs-margin-bottom-3">
+					<div class="col-xs-10 hs-margin-top-5">
+						<div class="progress hs-margin-bottom-1">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{record.rate}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': record.rate+'%'}"></div>
+						</div>
+					</div>
+					<div class="col-xs-2 text-right hs-padding-left-0">
+						<span class="progress-tip"><span ng-bind="record.rate"></span>%</span>
+					</div>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<span>投资金额(元)</span>
+			<span class="menu-text-right pull-right" ng-bind="record.amount | number:2">2.000.00</span>
+		</li>
+		<li class="list-group-item">
+			<span>预期收益(元)</span>
+			<span class="menu-text-right pull-right" ng-bind="(record.receivedProfit + record.willProfit) | number:2">78.00</span>
+		</li>
+		<li class="list-group-item">
+			<span>年化收益率</span>
+			<span class="menu-text-right pull-right" ng-bind="(record.annualizedRate * 100 |number) +'%'">10%</span>
+		</li>
+		<li class="list-group-item">
+			<span>还款方式</span>
+			<span class="menu-text-right pull-right" ng-bind="record.repaymentModeName">按月付息，到期还本</span>
+		</li>
+		<li class="list-group-item">
+			<span>收款期</span>
+			<span class="menu-text-right pull-right" ng-bind="record.investmentPeriod">2015-10-16至2016-10-16</span>
+		</li>
+		<li class="list-group-item">
+			<span>剩余/总期数</span>
+			<span class="menu-text-right pull-right" ng-bind="record.remaindAndTotalMonth">11/12</span>
+		</li>
+		<li class="list-group-item" ui-sref="account.investPlan({recordId:record.recordId})">
+			<span>还款计划</span>
+			<i class="menuarrow menuarrow-right pull-right"></i>
+		</li>
+		<li class="list-group-item" ui-sref="invest.item.agreement({projectId: record.projectId,amount:record.amount})">
+			<span>借款协议</span>
+			<i class="menuarrow menuarrow-right pull-right"></i>
+		</li>
+	</ul>
+	<!--<p class="text-center"><a class="text-warning hs-padding-top-10 hs-margin-top-10" href="">个人借款及《担保协议》</a></p>-->
+  </div>
+</div>

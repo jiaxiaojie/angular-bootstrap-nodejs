@@ -1,0 +1,94 @@
+<div class="scrollable">
+	<div class="scrollable-content peanut-selectadr peanut-confirmorder menu">
+		<div ng-if="flag==true">
+			<div class="list-group-item"  ng-if="addresses[0]!=null && productDetail.typeId==1" ui-sref="account.peanut.selectAddress({productId: productDetail.productId,productCount: productCount})">
+			<span class="icon-group pull-left">
+				<span class="icon icon-horizontal icon-sm icon-landmark-pink"></span>
+				<span class="icon-txt text-left text-muted">{{address.showName}}
+					<span style="display: block;">{{address.mobile}}</span>
+					<span>
+						<i class="text-danger font-style-normal" ng-if="address.isDefault==0">[默认]</i>{{address.address}}
+						<i class="text-danger font-style-normal"></i>{{address.address}}
+					</span>
+				</span>
+			</span>
+				<span class="menuarrow menuarrow-right pull-right" ui-sref="account.peanut.selectAddress"></span>
+			</div>
+			<div class="list-group-item" ng-if="addresses[0]==null && productDetail.typeId==1" ui-sref="account.peanut.selectAddress({productId: productDetail.productId,productCount: productCount})">
+			<span class="icon-group pull-left">
+				<span class="icon icon-horizontal icon-sm icon-landmark-pink"></span> 
+				<span class="icon-txt text-left text-muted">请选择一个收货地址</span>
+			</span>
+				<span class="menuarrow menuarrow-right pull-right"></span>
+			</div>
+			<div class="list-group-item container listdetail hs-padding-top-0 hs-padding-bottom-0">
+				<div class="row">
+					<div class="col-xs-3 text-center hs-padding-0"><img src="{{productDetail.logoNormal}}"></div>
+					<div class="col-xs-4 text-center hs-padding-left-7 hs-padding-right-7 hs-padding-top-10">
+						<span class="text-info center-block hs-padding-bottom-6 hs-padding-top-10 hs-margin-top-5">商品名称</span>
+						<span>{{productDetail.productName}}</span>
+					</div>
+					<div class="col-xs-2 text-center hs-padding-left-7 hs-padding-right-7 hs-padding-top-10">
+						<span class="text-info center-block hs-padding-bottom-6 hs-padding-top-10 hs-margin-top-5">数量</span>
+						<span>{{productCount}}</span>
+					</div>
+					<div class="col-xs-3 text-center hs-padding-left-7 hs-padding-right-7 hs-padding-top-10">
+						<span class="text-info center-block hs-padding-bottom-6 hs-padding-top-10 hs-margin-top-5">花生豆</span>
+						<span class="text-danger">{{productCount*productDetail.price}}</span>
+					</div>
+				</div>
+			</div>
+			<a class="btn btn-lg btn-danger center-block hs-margin-left-10 hs-margin-right-10 hs-margin-top-10" ng-if="addressId.length>0 && productDetail.typeId==1" ng-click="orderConfirm()" id="orderConfirmBtn">确认下单</a>
+			<a class="btn btn-lg btn-danger center-block hs-margin-left-10 hs-margin-right-10 hs-margin-top-10" ng-if="addressId.length>=0 && productDetail.typeId==2" ng-click="orderConfirm()" id="orderConfirmBtn">确认下单</a>
+			<span ng-if="addressId.length==0 && productDetail.typeId==1" ng-click="canNotConfirm()">
+			<a class="btn btn-lg btn-danger center-block hs-margin-left-10 hs-margin-right-10 hs-margin-top-10 disabled"  id="orderConfirmBtn">确认下单</a>
+			</span>
+		</div>
+
+
+
+		<div ng-if="flag==false">
+			<p class="text-info hs-padding-left-10 hs-padding-top-10" ng-if="productDetail.typeId==1">收货人信息</p>
+			<div class="list-group-item" ng-if="productDetail.typeId==1">
+				<span class="icon-group pull-left">
+					<span class="icon icon-horizontal icon-sm icon-landmark-pink"></span>
+					<span class="icon-txt text-left text-muted">{{address.showName}}
+						<span style="display: block;">{{address.mobile}}</span>
+						<span><i class="text-danger font-style-normal"></i>{{address.address}}</span>
+					</span>
+				</span>
+				<span class="menuarrow menuarrow-right pull-right"></span>
+			</div>
+			<div class="text-info hs-padding-left-10 hs-padding-top-10 hs-padding-bottom-10">订单详情</div>
+			<div class="list-group-item container listdetail hs-padding-top-0 hs-padding-bottom-0">
+				<div class="row">
+					<div class="col-xs-3 text-center hs-padding-0"><img src="{{productDetail.logoNormal}}"></div>
+					<div class="col-xs-4 text-center hs-padding-top-10">
+						<span class="text-info center-block hs-padding-bottom-6 hs-padding-top-10 hs-margin-top-5">商品名称</span>
+						<span>{{productDetail.productName}}</span>
+					</div>
+					<div class="col-xs-2 text-center hs-padding-top-10">
+						<span class="text-info center-block hs-padding-bottom-6 hs-padding-top-10 hs-margin-top-5">数量</span>
+						<span>*{{productCount}}</span>
+					</div>
+					<div class="col-xs-3 text-center hs-padding-top-10">
+						<span class="text-info center-block hs-padding-bottom-6 hs-padding-top-10 hs-margin-top-5">花生豆</span>
+						<span class="text-danger">{{productCount*productDetail.price}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="list-group-item">
+				<p>订单编号：{{orderCode}}</p>
+				<p class="hs-margin-bottom-0">交易时间：{{createDt}}</p>
+			</div>
+			<p class="text-info hs-padding-left-10 font-size-12">温馨提示：现在可以在卡券中心看到您兑换的现金券哦。</p>
+			<div class="container hs-padding-top-10 hs-margin-top-10">
+				<div class="row">
+					<div class="col-xs-12">
+						<a ui-sref="account.peanut.peanutPark" class="btn btn-danger btn-lg center-block">返回花生乐园首页</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

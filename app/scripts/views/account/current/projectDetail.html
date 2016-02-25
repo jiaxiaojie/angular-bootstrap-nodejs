@@ -1,0 +1,111 @@
+<div class="scrollable" style="padding-bottom: 57px;">
+    <div class="scrollable-content currentpeanuts">
+    	<ul class="list-group menu">
+			<li class="list-group-item header">
+				<div>
+					<span class="icon-group">
+						<i class="icon icon-hs-4 icon-horizontal icon-md icon-money-purple"></i>
+						<i class="icon-txt font-size-16" ng-bind="currentProjectDetail.activityRemark"></i>
+					</span>
+				</div>
+				<span class="current-logo-label icon-current-label"></span>
+			</li>
+			<li class="list-group-item data01">
+				<div class="hs-padding-right-0 text-center">
+					<p class="icon-group">
+						<span class="icon icon-annualized-return-rate icon-horizontal icon-sm hs-margin-top-5"></span>
+						<span class="icon-txt">年化收益率</span>
+					</p>
+					<p class="text-warning">{{currentProjectDetail.annualizedRate*100 | number:1}}<small>%</small></p>
+				</div>
+			</li>
+			<li class="list-group-item transparent-bg currentbar">
+				<div class="container">
+					<div class="row hs-margin-top-7">
+						<div class="col-xs-10">
+							<div class="progress">
+								<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="100" style="width: {{currentProjectDetail.rate}}%;"></div>
+							</div>
+						</div>
+						<div class="col-xs-2 text-right hs-padding-left-0" >
+							<span class="progress-tip"><span>{{currentProjectDetail.rate}}</span>%</span>
+						</div>
+					</div>
+					<div class="row progress-detail">
+						<div class="col-xs-6">
+							<dl class="dl-horizontal">
+								<dt>融资金额：</dt>
+								<dd>{{currentProjectDetail.financeMoney | number:0}}元</dd>
+							</dl>
+						</div>
+						<div class="col-xs-6">
+							<dl class="dl-horizontal pull-right">
+								<dt>可投金额：</dt>
+								<dd class="text-danger">{{currentProjectDetail.amount | number:0}}元</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="list-group-item">
+				<div class="container hs-padding-right-0 hs-padding-left-0">
+					<div class="row">
+						<div class="col-xs-4 hs-padding-right-0">
+							<dl class="text-center hs-margin-bottom-0">
+								<dt class="text-muted hs-margin-bottom-2">每万元日收益</dt>
+								<dd class="text-info font-size-14">{{currentProjectDetail.interestOf10000Yuan | number:2}}</dd>
+							</dl>
+						</div>
+						<div class="col-xs-4">
+							<dl class="text-center  hs-margin-bottom-0">
+								<dt class="text-muted hs-margin-bottom-2">起投金额</dt>
+								<dd class="text-info font-size-14 ng-binding">{{currentProjectDetail.startingAmount}}元</dd>
+							</dl>
+						</div>
+						<div class="col-xs-4 hs-padding-left-0">
+							<dl class="text-center hs-margin-bottom-0">
+								<dt class="text-muted hs-margin-bottom-2">收益起始日</dt>
+								<dd class="text-info font-size-14">{{currentProjectDetail.startDate}}</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="list-group-item hs-margin-top-10 border-top-0 intro">
+				<h3 class="text-muted font-size-14">项目简介</h3>
+				<p class="text-success" ng-bind-html="currentProjectDetail.introduce"></p>
+			</li>
+			<li class="list-group-item intro">
+				<h3 class="text-muted font-size-14">投资范围</h3>
+				<p class="text-success" ng-bind-html="currentProjectDetail.investmentScope"></p>
+			</li>
+			<li class="list-group-item border-bottom-0 intro">
+				<h3 class="text-muted font-size-14">购买规则</h3>
+				<p class="text-success" ng-bind-html="currentProjectDetail.buyRule"></p>
+			</li>
+			<li class="list-group-item border-bottom-0 intro">
+				<h3 class="text-muted font-size-14">提取到账时间 </h3>
+				<p class="text-success">T+1</p>
+			</li>
+			<li class="list-group-item border-bottom-0 intro">
+				<h3 class="text-muted font-size-14">计息规则</h3>
+				<p class="text-success" ng-bind-html="currentProjectDetail.interestCalculateRule"></p>
+			</li>
+			<li class="list-group-item border-bottom-0 intro">
+				<h3 class="text-muted font-size-14">费用</h3>
+				<p class="text-success" ng-bind-html="currentProjectDetail.fee"></p>
+			</li>
+		</ul>
+    </div>
+</div>
+<div class="container scrollable-footer">
+	<div class="row hs-margin-bottom-10">
+		<div class="col-xs-12">
+			<a class="btn btn-danger btn-lg center-block" ng-click="invest()" ng-if="currentProjectDetail.amount>0">立即投资</a>
+			<a class="btn btn-danger btn-lg center-block disabled" ng-if="currentProjectDetail.amount<=0">已结束</a>
+		</div>
+	</div>
+</div>
+<div ui-content-for="navbarAction">
+    <span class="navbarRight"><span class="icon icon-exclamation-white-top" ui-sref="account.current.intro"></span></span>
+</div>

@@ -1,0 +1,47 @@
+<div class="scrollable">
+	<div class="scrollable-content hs-safe">
+		<div>
+			<uib-carousel no-wrap="noWrapSlides" custom-carousel no-switch="true" template-url="scripts/directives/Carousel.tpl.html">
+	            <uib-slide template-url="scripts/directives/Carousel.Slide.tpl.html">
+	                <div class="hs-carousel first">
+						<h1 class="text-left">资金托管</h1>
+						<p class="one"><img src="../images/app/img_insurance_1@2x.png" alt=""></p>
+						<p class="two text-left">花生金服平台将投资人资金存放于指定的第三方支付机构，并以每位投资人名义单独立户管理，由第三方进行账户监管。花生金服平台不涉及投资人资金，采取第三方托管以保障客户资金安全为目的的资金存管模式。</p>
+						<p class="three relative text-left" ng-click="viewBigImg(0);">查看花生金服与易宝支付合作协议<i class="menuarrow menuarrow-right"></i></p>
+					</div>
+	            </uib-slide>
+	            <uib-slide template-url="scripts/directives/Carousel.Slide.tpl.html">
+	                <div class="hs-carousel">
+						<h1 class="text-left">保险</h1>
+						<p class="one"><img src="../images/app/img_insurance_2@2x.png" alt=""></p>
+						<p class="two text-left">交易资金损失险保障交易过程中的资金盗转、盗用等保险事故。保险公司按照保险合同约定在赔偿限额内向花生金服承担赔偿责任。</p>
+						<p class="three relative text-left" ng-click="viewBigImg(1);">查看花生金服风险备用金《资金托管报告》<i class="menuarrow menuarrow-right"></i></p>
+					</div>
+	            </uib-slide>
+	            <uib-slide template-url="scripts/directives/Carousel.Slide.tpl.html">
+	                <div class="hs-carousel">
+						<h1 class="text-left">风险保证金</h1>
+						<p class="one"><img src="../images/app/img_insurance_3@2x.png" alt=""></p>
+						<p class="two text-left">花生金服平台首期设立1500万风险保证金用于保障投资人利益，在投资人资金无法顺利回款的情况下，在该项目到期日之后的3个工作日内启动平台风险保证金收购该项目债权。该计划适用于花生金服所有产品、标的。</p>
+						<p class="three relative text-left" ng-click="viewBigImg(2);">查看花生金服与阳光财险合作协议<i class="menuarrow menuarrow-right"></i></p>
+					</div>
+	            </uib-slide>
+	            <uib-slide template-url="scripts/directives/Carousel.Slide.tpl.html">
+	                <div class="hs-carousel last">
+						<h1 class="text-left">法律保障</h1>
+						<p class="one"><img src="../images/app/img_insurance_4@2x.png" alt=""></p>
+						<p class="two text-left">花生金服平台所有产品、标的均由全国知名律师事务所--上海市建纬律师事务所提供全方位法律援助服务，确保平台所有产品合规、合法，保障投资人权益。</p>
+						<p class="three relative text-left" ng-click="viewBigImg(3);">查看花生金服《法律文件》<i class="menuarrow menuarrow-right"></i></p>
+					</div>
+	            </uib-slide>
+	        </uib-carousel>
+		</div>
+	</div>
+</div>
+<div ui-content-for="modals">
+	<div class="modal hs-popup document-pop" ui-turn-off="hspopup" ui-if='hspopup' ui-state='hspopup' ui-default="false">
+		<div class="modal-backdrop in">
+			<div preview="imgArray[index]" default="0"></div>
+		</div>
+	</div>
+</div>

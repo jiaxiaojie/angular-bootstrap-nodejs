@@ -1,0 +1,21 @@
+<div class="scrollable">
+	<div class="scrollable-content activiry">
+		<div class="container" ng-repeat="activity in activityList">
+			<div class="row">
+				<div class="col-xs-12">
+					<a ng-click="go(activity)"><img ng-src="{{activity.img}}" style="margin:auto;"></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 hs-margin-top-10">
+					<p class="text-success" ng-bind="activity.datetime"></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<p ng-bind="activity.title"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

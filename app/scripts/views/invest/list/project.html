@@ -1,0 +1,114 @@
+<div class="scrollable">
+	<ui-state id="activeTab" default="1"></ui-state>
+	<div class="btn-group justified nav-tabs top invest-top">
+	  <a class="btn btn-default font-size-13 relative" ui-class="{'active': activeTab == 1}" ui-set="{'activeTab': 1}" ng-click="sort(undefined)">
+		  默认
+		  <span class="arrow" ng-show="sortField==undefined"></span>
+		  <span class="line"></span>
+	  </a>
+	  <a class="btn btn-default font-size-13 relative" ui-class="{'active': activeTab == 2}" ui-set="{'activeTab': 2}" ng-click="sort('annualizedRate')">
+		  利率
+		  <span class="arrow" ng-show="sortField=='annualizedRate'" ng-bind="reverse?'↓':'↑'">↓</span>
+		  <span class="line"></span>
+	  </a>
+		<a class="btn btn-default font-size-13" ui-class="{'active': activeTab == 3}" ui-set="{'activeTab': 3}" ng-click="sort('projectDuration')">
+			期限
+			<span class="arrow" ng-show="sortField=='projectDuration'" ng-bind="reverse?'↓':'↑'">↓</span>
+		  <span class="line"></span>
+	  </a>
+	  <a class="btn btn-default font-size-13" ui-class="{'active': activeTab == 4}" ui-set="{'activeTab': 4}" ng-click="sort('rate')">
+		  进度
+		  <span class="arrow" ng-show="sortField=='rate'" ng-bind="reverse?'↓':'↑'">↓</span>
+	  </a>
+	</div>
+	<div class="scrollable-content loading" ui-scroll-bottom="loadMore()" ui-scroll-top="loadMore(true)">
+		<div class="box-group">
+			<div class="currentBox container hs-margin-bottom-10" ng-repeat="current in currents | orderBy:sortField:reverse" ui-sref="account.current.projectDetail({projectId: current.projectId})">
+				<div class="row">
+					<div class="col-xs-5 relative">
+						<span class="text-success font-size-16">利率</span>
+						<span class="text-danger font-lg">{{current.annualizedRate*100 | number:1}}<i class="font-size-16">%</i></span>
+						<span class="rightline"></span>
+					</div>
+					<div class="col-xs-7">
+						<span class="text-muted font-size-16 hs-margin-bottom-3">{{current.projectName}}</span>
+						<span class="text-success font-size-13 hs-margin-bottom-3">可投金额:{{current.amount}}</span>
+						<span class="text-warning font-size-13">1元起投，灵活存取</span>
+					</div>
+				</div>
+			</div>
+			<div ng-repeat="project in getProjectList()| orderBy:sortField:reverse" class="box stemp-box investitem" ui-sref="invest.item.projectDetail({projectId: project.projectId })">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-7 hs-padding-right-0">
+							<p class="h1">
+								<span ng-bind="subString(project.projectName, 8)">新项目123</span>
+								<span class="label label-danger" ng-if="project.isNewUser == '0'">新</span>
+								<span class="label label-danger" ng-if="project.isUseTicket == '0'">券</span>
+								<span class="label label-danger" ng-if="project.isCanAssign == '0'">转</span>
+							</p>
+						</div>
+						<div class="col-xs-5 hs-padding-left-0 hs-padding-right-7" ng-if="project.status == 3">
+							<dl class="dl-horizontal text-right">
+								<dt>可投:</dt>
+								<dd>
+									<small ng-bind="project.amount/10000 | number:2" ng-if="project.amount >= 10000"></small>
+									<small ng-bind="project.amount" ng-if="project.amount < 10000"></small>
+								</dd>
+								<dd ng-if="project.amount >= 10000">万元</dd>
+								<dd ng-if="project.amount < 10000">元</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<span class="stemp-box-line"></span>
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-4">
+							<dl class="text-lg">
+								<dt>利率</dt>
+								<dd ng-if="project.annualizedRateAdd>0" ><strong ng-bind="project.annualizedRateNormal*100 | number:1"></strong><small>%+<span ng-bind="project.annualizedRateAdd*100 | number:1"></span>%</small></dd>
+								<dd ng-if="project.annualizedRateAdd==0"><strong ng-bind="project.annualizedRateNormal*100 | number:1"></strong><small>%</small></dd>
+							</dl>
+						</div>
+						<div class="col-xs-4">
+							<dl class="text-lg">
+								<dt>期限</dt>
+								<dd><strong ng-bind="project.projectDuration"></strong><small>个月</small></dd>
+							</dl>
+						</div>
+						<div class="col-xs-4 text-center">
+							<div class="progress-radial progress-radial-danger progress-{{project.rate | number:0}}" ng-if="project.status == 3">
+								<div class="pie_left"><div class="left"></div></div>
+								<div class="pie_right"><div class="right"></div></div>
+								<div class="progress-radial-inline" ng-if="project.amount > 0">
+									<span class="text-style-one" ng-if="project.terminalCodes.indexOf('3')!=-1">立即<br>投资</span>
+									<span class="text-style-one" ng-if="project.terminalCodes.indexOf('3')==-1">APP<br>专享</span>
+								</div>
+								<div class="progress-radial-inline" ng-if="project.amount == 0">
+									<span class="text-style-one">投标<br>结束</span>
+								</div>
+							</div>
+							<div class="progress-radial progress-radial-danger progress-100" ng-if="project.status == 4">
+								<div class="pie_left"><div class="left"></div></div>
+								<div class="pie_right"><div class="right"></div></div>
+								<div class="progress-radial-inline"><span class="text-style-two">满标</span></div>
+							</div>
+							<div class="progress-radial progress-radial-primary progress-100" ng-if="project.status == 5">
+								<div class="pie_left"><div class="left"></div></div>
+								<div class="pie_right"><div class="right"></div></div>
+								<div class="progress-radial-inline"><span class="text-style-two text-danger">还款中</span></div>
+							</div>
+							<div class="progress-radial progress-radial-default progress-100" ng-if="project.status == 6 || project.status == 7">
+								<div class="pie_left"><div class="left"></div></div>
+								<div class="pie_right"><div class="right"></div></div>
+								<div class="progress-radial-inline"><span class="text-style-two">已结束</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<span ng-if="project.isRecommend == '0' && project.status == 3" class="icon icon-hot icon-sm"></span>
+			</div>
+		</div>
+	</div>
+</div>

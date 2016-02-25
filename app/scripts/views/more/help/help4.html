@@ -1,0 +1,63 @@
+<div class="scrollable">
+	<div class="scrollable-content">
+		<ul class="list-group menu no-top-border" ui-state='myAccordion' ui-default='1'>
+		    <li class="list-group-item" ui-set="{'myAccordion': 1}">
+		    	<span>1.如何进行投资？</span>
+		        <i class="menuarrow pull-right" ui-class="{'menuarrow-down':myAccordion==1,'menuarrow-right':myAccordion!=1}"></i>
+		    </li>
+	        <div class="text-display text-info" ui-if="myAccordion == 1">
+	        	<p>您可按照以下步骤进行投资：</p>
+	        	<p>
+	        		a.在花生金服客户端注册、开通第三方资金托管账户；<br>
+b.进入“我的”页面，点击充值按钮进行充值<br>
+c.进入“投资”页面，选择相应的项目进行投资
+	        	</p>
+	        </div>
+		    <li class="list-group-item" ui-set="{'myAccordion': 2}">
+		    	<span>2.什么是现金券？</span>
+		        <i class="menuarrow pull-right" ui-class="{'menuarrow-down':myAccordion==2,'menuarrow-right':myAccordion!=2}"></i>
+		    </li>
+			<div class="text-display text-info" ui-if="myAccordion == 2">
+				<p>现金券是花生金服提供给用户的优惠福利，满足投资条件即可在支付时抵扣现金，项目到期时可一并提取。<br>
+现金券将通过花生金服各类活动进行发放，您可通过参与活动进行获取。</p>
+			</div>
+		    <li class="list-group-item" ui-set="{'myAccordion': 3}">
+		    	<span>3.什么是冻结资金?</span>
+		        <i class="menuarrow pull-right" ui-class="{'menuarrow-down':myAccordion==3,'menuarrow-right':myAccordion!=3}"></i>
+		    </li>
+			<div class="text-display text-info" ui-if="myAccordion == 3">
+				<p>您投资的项目在达到100%之前，你的购买资金会被冻结；当项目进度达到100%时，这部分资金将会转给借款人；若在限定期限内项目进度没有达到100%，即流标，这部分资金将解除冻结返还至你的账户余额。</p>
+			</div>
+		    <li class="list-group-item" ui-set="{'myAccordion':4}">
+		    	<span>4.什么是微信专享、APP专享和手机专享项目？</span>
+		        <i class="menuarrow pull-right" ui-class="{'menuarrow-down':myAccordion==4,'menuarrow-right':myAccordion!=4}"></i>
+		    </li>
+			<div class="text-display text-info" ui-if="myAccordion == 4">
+				<p>微信专享项目：指只能通过花生金服官方微信投资的项目；<br>
+APP专享项目：指只能通过花生金服APP购买的项目；<br>
+手机专享项目：指通过花生金服官方微信和APP均能购买的项目</p>
+			</div>
+			<li class="list-group-item" ui-set="{'myAccordion':5}">
+		    	<span>5.本金和收益是否可以得到保障？</span>
+		        <i class="menuarrow pull-right" ui-class="{'menuarrow-down':myAccordion==5,'menuarrow-right':myAccordion!=5}"></i>
+		    </li>
+			<div class="text-display text-info" ui-if="myAccordion == 5">
+				<p>花生金服提供金刚花生保障计划，充分保障投资人本金及投资收益。</p>
+			</div>
+			<li class="list-group-item" ui-set="{'myAccordion':6}">
+		    	<span>6.投资后什么时候开始计息？</span>
+		        <i class="menuarrow pull-right" ui-class="{'menuarrow-down':myAccordion==6,'menuarrow-right':myAccordion!=6}"></i>
+		    </li>
+			<div class="text-display text-info" ui-if="myAccordion == 6">
+				<p>项目放款时开始计息。</p>
+			</div>
+			<li class="list-group-item" ui-set="{'myAccordion':7}">
+		    	<span>7.花生金服的收益为什么比较高？</span>
+		        <i class="menuarrow pull-right" ui-class="{'menuarrow-down':myAccordion==7,'menuarrow-right':myAccordion!=7}"></i>
+		    </li>
+			<div class="text-display text-info" ui-if="myAccordion == 7">
+				<p>花生金服结合了传统金融和互联网的优势，由专业的风控团队确保融资人的还款能力，同时利用互联网技术减少中间环节，提高了融资效率，通过降低运营成本为用户带来较高的收益回报。</p>
+			</div>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,4 @@
+<div class="document-slide relative" ui-swipe-left="next(1)" ui-swipe-right="next(-1)">
+    <img src="" ng-repeat="img in imgArray" ng-src="{{img}}" ng-if="$index === index"/>
+    <p class="text-center font-size-16 hs-margin-top-8 txt">{{index+1}}/{{imgArray.length}}</p>
+</div>

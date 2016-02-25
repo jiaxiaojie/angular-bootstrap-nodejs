@@ -1,0 +1,120 @@
+<div class="scrollable" ng-hide="isShowSelectTicket">
+    <div class="scrollable-content invest-buy">
+        <form novalidate="novalidate">
+        <ul class="list-group menu hs-margin-bottom-10">
+            <li class="list-group-item hs-margin-bottom-7">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-4 hs-padding-right-0 hs-padding-left-0"><span>投资金额(元)</span></div>
+                        <div class="col-xs-8 hs-padding-right-0 hs-padding-left-0 text-right text-primary" ng-bind="amount"></div>
+                    </div>
+                </div>
+            </li>
+            <!-- 	    <li class="list-group-item">
+                        <span>平台垫付金额（元）</span>
+                        <span class="menu-text-right pull-right">180</span>
+                    </li> -->
+            <li class="list-group-item" ng-if="project.isUseTicket == '0' && isAmount && project.isNewUser != 0">
+                <span>现金券</span>
+                <i class="menuarrow menuarrow-right pull-right"></i>
+                <span class="menu-text-right pull-right text-success" ng-show="canUseInvestmentTickets.length == 0">不可用</span>
+                <span class="menu-text-right pull-right text-success" ng-show="ticketAmount > 0" ng-click="selectTicket()">抵扣{{ticketAmount | number:2}}元</span>
+                <span class="menu-text-right pull-right text-success" ng-show="ticketAmount <= 0 && canUseInvestmentTickets.length > 0" ng-click="selectTicket()">请选择</span>
+            </li>
+            <li class="list-group-item">
+                <span>可用余额(元)</span>
+                <span class="menu-text-right pull-right text-success" ng-bind="accountInfo.availableBalance | number:2">900,000</span>
+            </li>
+        </ul>
+        <p ng-if="amount>accountInfo.availableBalance+ticketAmount" class="text-right font-size-12 hs-margin-bottom-10">还需充值<span class="text-warning" ng-bind="amount-accountInfo.availableBalance-ticketAmount| number:2"></span>元</p>
+        <div class="container hs-margin-bottom-10">
+            <div class="row hs-margin-top-10">
+                <div class="col-xs-12">
+                   <p>确认投资代表您同意<a class="text-warning hs-padding-top-10 hs-margin-top-10" ui-sref="invest.item.agreement({projectId: project.projectId,amount:amount})">《借款协议》</a></p>
+                </div>
+            </div>
+            <div class="row invest-buy-btn">
+                <div class="col-xs-12">
+                    <button class="btn btn-danger btn-lg" ng-if="buyState() == 0" ng-disabled="!canInvest()" ng-click="getInvestUrl()" id="amount">确认投资</button>
+                    <button class="btn btn-danger btn-lg" ng-if="buyState() == 1" ui-sref="yeepay.recharge">立即充值</button>
+                    <button class="btn btn-danger btn-lg disabled" ng-if="buyState() == 2" ng-disabled="true">投资金额不能大于1亿元</button>
+                </div>
+            </div>
+            <div class="row invest-buy-btn">
+                <div class="col-xs-12">
+                    <p class="text-success hs-margin-bottom-10 hs-margin-top-10">
+                        温馨提示：<br>
+                        即将进入支付流程，如果投资取消或者失败，您的资金将会冻结大约半个小时，稍后会自动退回您的账户。
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <p class="text-center text-success footer hs-margin-top-10 hs-padding-top-10">
+            <span class="icon-group">
+                <i class="icon icon-shield icon-horizontal icon-x-sm"></i>
+                <i class="icon-txt">账户资金由易宝支付托管，安全可靠</i>
+            </span>
+        </p>
+        </form>
+    </div>
+</div>
+
+<div class="scrollable" ng-hide="!isShowSelectTicket">
+    <div class="scrollable-content">
+        <div class="box-group ticket">
+            <div class="container hs-margin-bottom-10">
+                <div class="row">
+                    <div class="col-xs-12 hs-padding-left-0 hs-padding-right-0">最大可使用额度<span class="text-warning" ng-bind="amount * ticketAmountRate | number:2"></span>元，已选择额度<span class="text-warning" ng-bind="ticketAmount | number:2 | number:2"></span>元</div>
+                </div>
+            </div>
+            <!--ng-class="{'ticket-bg-blue': (investmentTicket.useLimit <= amount), 'ticket-bg-gray': (investmentTicket.useLimit > amount)}"-->
+            <div id="selectTicketBtn" class="box stemp-box investitem ticket-box" ng-repeat="investmentTicket in canUseInvestmentTickets"
+                 ng-class="investmentTicket.status==0 && amount * ticketAmountRate >= investmentTicket.amount && (amount * ticketAmountRate-ticketAmount>=investmentTicket.amount || isInSelectTicketIds(investmentTicket.ticketId)) ? 'ticket-bg-pink': 'ticket-bg-gray'"
+                 ng-click="clickTicket(investmentTicket.ticketId)">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6 hs-padding-right-0">
+                            <p class="h4">现金券</p>
+                        </div>
+                        <div class="col-xs-6 hs-padding-left-0">
+                            <p class="dl-horizontal" ng-bind="removeBr(investmentTicket.useInfo)">满1000元抵50元</p>
+                        </div>
+                    </div>
+                </div>
+                <span class="stemp-box-line"></span>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6 hs-padding-right-0">
+                            <p class="text-lg">
+                                <span class="font-size-16">￥</span>
+                                <b class="num" ng-bind="investmentTicket.amount">1000</b>
+                            </p>
+                        </div>
+                        <div class="col-xs-6 hs-padding-left-0 text-left" ng-if="!(investmentTicket.status==0 && amount * ticketAmountRate >= investmentTicket.amount && (amount * ticketAmountRate-ticketAmount>=investmentTicket.amount || isInSelectTicketIds(investmentTicket.ticketId)))">
+                            <b class="col-xs-12 hs-padding-left-0 hs-padding-right-0 text-success">您的投资额度不够，</b>
+                            <b class="col-xs-12 hs-padding-left-0 hs-padding-right-0 text-success">不能使用这张投资卷哦！</b>
+                        </div>
+                        <div class="col-xs-6 hs-padding-left-0 text-center" ng-if="investmentTicket.status==0 && amount * ticketAmountRate >= investmentTicket.amount" ng-show="isInSelectTicketIds(investmentTicket.ticketId)">
+                            <span class="icon icon-radio-green-sel icon-vertical"></span>
+                        </div>
+                        <div class="col-xs-6 hs-padding-left-0 text-left" ng-if="investmentTicket.status==1">
+                            <b class="col-xs-12 hs-padding-left-0 hs-padding-right-0 text-success">已使用</b>
+                        </div>
+                        <div class="col-xs-6 hs-padding-left-0 text-left" ng-if="investmentTicket.status==2">
+                            <b class="col-xs-12 hs-padding-left-0 hs-padding-right-0 text-success">已过期</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="text-sm">有效期至：{{investmentTicket.invalidDt}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="navbarAction">
+    <span class="navbarRight" ng-if="isShowSelectTicket" ng-click="finishedSelectTicket()">确认</span>
+</div>

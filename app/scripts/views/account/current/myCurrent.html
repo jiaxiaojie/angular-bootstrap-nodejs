@@ -1,0 +1,46 @@
+<div class="scrollable">
+    <div class="scrollable-content my-invest myCurrent">
+        <div class="empty text-center show" ng-if="myCurrents.length<=0">
+	            <span class="icon-group">
+	                <i class="icon icon-default icon-folder icon-vertical icon-x-lg"></i>
+	                <i class="icon-txt text-success">暂时没有数据哦</i>
+	            </span>
+        </div>
+        <div ng-if="myCurrents.length>0">
+            <ul class="list-group menu my-invest-tabcontent" ng-repeat="myCurrent in myCurrents"
+                ui-sref="account.current.myCurrentDetail({projectId: myCurrent.projectId})">
+                <li class="list-group-item my-invest-tabcontent-header hs-margin-top-0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 hs-margin-top-3">
+								<span class="icon-group">
+									<span class="icon icon-money-purple icon-horizontal icon-md text-muted"></span>
+									<span class="icon-txt font-size-16">{{myCurrent.projectName}}</span>
+								</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="my-invest-column">
+                        <dl class="text-center">
+                            <dt>投资金额(元)
+                            </dt>
+                            <dd>{{myCurrent.amount | number : 2}}</dd>
+                        </dl>
+                        <dl class="text-center">
+                            <dt>年化收益率
+                            </dt>
+                            <dd>{{myCurrent.annualizedRate*100 | number : 1}}%</dd>
+                        </dl>
+                        <dl class="text-center">
+                            <dt>累计收益(元)
+                            </dt>
+                            <dd>{{myCurrent.receivedProfit | number : 2}}</dd>
+                        </dl>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

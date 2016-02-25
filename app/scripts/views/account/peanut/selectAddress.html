@@ -1,0 +1,31 @@
+<div class="scrollable">
+	<div class="scrollable-content peanut-selectadr menu">
+		<div class="list-group-item"  ng-if="addresses[0]!=null"  ng-repeat="address in addresses" ng-click="confirmAddress(address.addressId)">
+			<div ng-class="{'inner':data.isEdit,'inner2':!data.isEdit}">
+				<span class="icon-group pull-left">
+					<span class="icon icon-horizontal icon-sm icon-landmark-pink"></span> 
+					<span class="icon-txt text-left text-muted">{{address.showName}}
+						<span style="display: block;">{{address.mobile}}</span>
+						<span>
+							<i class="text-danger font-style-normal" ng-if="address.isDefault==0">[默认]</i>{{address.address}}
+							<i class="text-danger font-style-normal" ng-if="address.isDefault==1"></i>{{address.address}}
+						</span>
+					</span>
+				</span>
+			</div>
+		</div>
+		<!-- 没有地址情况下显示 -->
+		<div class="adress-tip text-center hs-margin-top-10 hs-padding-top-10" ng-if="addresses[0]==null" ui-sref="account.peanut.addAddress({productId: productId,productCount:productCount})">
+			<span class="icon-group">
+				<span class="icon icon-vertical icon-lg icon-landmark-gray"></span> 
+				<span class="icon-txt text-info">快去添加一个地址吧</span>
+			</span>
+		</div>
+		<div class="addadress-btn text-warning text-center" ui-sref="account.peanut.addAddress({productId: productId,productCount:productCount})">添加地址</div>
+	</div>
+</div>
+<div ui-content-for="navbarAction">
+	<span class="navbarRight" ng-click="data.isEdit = !data.isEdit">
+		编辑
+	</span>
+</div>
