@@ -1,0 +1,39 @@
+{
+  "name": "hsbank-wechat",
+  "version": "0.0.0",
+  "authors": [
+    "QT<qiangqiang@xmdqq.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "font-awesome": "4",
+    "bootstrap": "3",
+    "fastclick": "1",
+    "overthrow": "0.7",
+    "angular":"",
+    "mobile-angular-ui": "",
+    "angular-mocks": "",
+    "angular-animate": "",
+    "angular-ui-router": "",
+    "angular-ui-bootstrap": "0.14.3",
+    "ui-router-extras": "",
+    "angular-post-message-qt":"",
+    "less":"",
+    "lodash":"",
+    "angular-local-storage":"",
+    "angular-bootstrap":"",
+    "angular-touch":"",
+    "angular-carousel":"",
+    "angular-base64":"",
+    "jquery-deserialize":"https://github.com/edgarjs/jquery-deserialize.git",
+    "ua-parser-js":"https://github.com/faisalman/ua-parser-js.git",
+    "angular-md5":"https://github.com/gdi2290/angular-md5.git"
+  }
+}

@@ -1,0 +1,90 @@
+﻿{
+  "name": "hsbank-wechat",
+  "version": "0.0.1",
+  "description": "for mobile prototype and wechat mobile html5",
+  "main": "app/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
+  },
+  "author": "QT",
+  "license": "ISC",
+  "devDependencies": {
+    "express":"",
+    "grunt":"",
+    "express-redirect":"",
+    "gulp-nodemon":"",
+    "karma":"",
+    "karma-jasmine":"",
+    "karma-jasmine-jquery":"",
+    "karma-script-launcher": "",
+    "karma-chrome-launcher": "",
+    "karma-firefox-launcher": "",
+    "karma-html2js-preprocessor": "",
+    "karma-requirejs": "",
+    "karma-coffee-preprocessor": "",
+    "karma-phantomjs-launcher": "",
+    "karma-ng-html2js-preprocessor": "",
+    "karma-ng-scenario": "",
+    "karma-jenkins-reporter":"",
+    "karma-junit-reporter":"",
+
+    "protractor":"",
+
+    "jasmine-reporters":"",
+
+    "gulp-ngdocs":"",
+
+    "moment":"",
+
+    "debug": "",
+    "bower": "",
+    "cheerio": "",
+    "chromedriver": "",
+    "del": "",
+    "gulp": "",
+    "gulp-grunt": "",
+    "gulp-concat": "",
+    "gulp-connect": "",
+    "gulp-csso": "",
+    "gulp-jshint": "",
+    "gulp-less": "",
+    "gulp-mobilizer": "",
+    "gulp-protractor": "",
+    "gulp-release-tasks": "",
+    "gulp-rename": "",
+    "gulp-sourcemaps": "",
+    "gulp-cssample": "",
+    "gulp-uglify": "",
+    "gulp-util": "",
+    "gulp-linker": "",
+    "gulp-sftp":"",
+    "gulp-live-server":"https://github.com/heran/gulp-live-server.git",
+    "gulp-markdown":"",
+    "gulp-replace":"",
+    "gulp-ng-html2js":"",
+    "gulp-minify-html":"",
+    "gulp-karma":"",
+    "connect-livereload":"",
+    "phantomjs": "",
+    "run-sequence": "",
+    "selenium-standalone-jar": "",
+    "serve-favicon": "",
+    "slug": "",
+
+    "restler":"",
+    "restler-when":"",
+    "urlencode":"",
+
+    "deasync":"",
+
+    "body-parser":"",
+    "multer":"",
+    "lodash":"",
+
+    "path-extra":"",
+
+    "jssha":""
+
+  }
+}
