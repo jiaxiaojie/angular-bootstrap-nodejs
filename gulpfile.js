@@ -120,11 +120,6 @@ gulp.task('images', function() {
         .pipe(gulp.dest(path.join('app', 'dist', 'images')));
 });
 
-// gulp.task('images:event', function() {
-//     return gulp.src(['app/event/**','!app/event/**/*.html','!app/event/**/*.js','!app/event/**/*.less'])
-//         .pipe(gulp.dest(path.join('app', 'dist', 'event')));
-// });
-
 /*====================================
  =   Compile, minify, mobilize less  =
  ====================================*/
@@ -202,28 +197,6 @@ gulp.task('js:templates:view', function () {
        .pipe(gulp.dest(path.join('app', 'dist', 'js')));
 });
 
-// gulp.task('js:templates:view:event', function () {
-//     return gulp.src(['app/event/**/*.html'])
-//         .pipe(minifyHtml({
-//             empty: true,
-//             spare: true,
-//             quotes: true
-//         }))
-//         .pipe(ngHtml2Js({
-//             moduleName: "hsWechat.tpls",
-//             prefix: "event/"
-//         }))
-//         .pipe(sourcemaps.init())
-//         .pipe(concat('view.event.tpls.js'))
-//         .pipe(replace('__IMG_VERSION__','version='+GLOBS.appConfig.version))
-//         .pipe(replace('__IMG_BASE__',GLOBS.appConfig.appRootUrl))
-//         .pipe(uglify())
-//         .pipe(rename({suffix: '.min'}))
-//         .pipe(gulp.dest(path.join('app', 'dist', 'js')))
-//         .pipe(sourcemaps.write('.'))
-//         .pipe(gulp.dest(path.join('app', 'dist', 'js')));
-// });
-
 gulp.task('js:templates:directive', function () {
    return gulp.src(['app/scripts/directives/*.tpl.html'])
        .pipe(minifyHtml({
@@ -252,13 +225,6 @@ gulp.task('linker', function(done){
     var logConfig = fs.readFileSync(__dirname+'/config/log.json', 'utf8');
 
     return gulp.src('app/_index.html')
-        // .pipe(linker({
-        //     scripts:['app/lib/**/*.js'],
-        //     startTag: '<!--lib js-->',
-        //     endTag: '<!--lib js end-->',
-        //     fileTmpl: '<script src="/%s" type="text/javascript"></script>',
-        //     appRoot: 'app/'
-        // }))
         .pipe(linker({
             scripts:[
                 'bower_components/ua-parser-js/dist/ua-parser.min.js',
@@ -284,7 +250,6 @@ gulp.task('linker', function(done){
         }))
         .pipe(linker({
             scripts:[
-                //'bower_components/ui-bootstrap-custom-build/ui-bootstrap-custom-0.13.4-csp.css'
                 'bower_components/angular-carousel/dist/angular-carousel.css'
             ],
             startTag: '<!--bower css-->',
@@ -320,7 +285,6 @@ gulp.task('clinker', function (done) {
         return '<pre><code>' + text + '</code></pre>';
     };//need pre tag
     var fs = require('fs');
-    // var tpl = fs.readFileSync(__dirname+'/app/_components.template.html', 'utf8');
     return gulp.src(['app/less/**']).pipe(gCssample(null))
         .pipe(linker({
             scripts:['app/less/framework.less'],
@@ -329,29 +293,9 @@ gulp.task('clinker', function (done) {
             fileTmpl: '<link crossorigin="anonymous" href="/%s" media="all" rel="stylesheet/less" type="text/css" />',
             appRoot: 'app/'
         }))
-        // .pipe(linker({
-        //     scripts:['app/less/lib/*.less'],
-        //     startTag: '<!--css-->',
-        //     endTag: '<!--css end-->',
-        //     fileTmpl: '<link crossorigin="anonymous" href="/%s" media="all"  rel="stylesheet/less" type="text/css" />',
-        //     appRoot: 'app/'
-        // }))
         .pipe(rename('index.html'))
         .pipe(gulp.dest('./css_example'));
 });
-
-// gulp.task('yeepaylinker', function(done){
-//     return gulp.src('app/_yeepay.html')
-//         .pipe(linker({
-//             scripts:['app/css/*.css'],
-//             startTag: '<!--css-->',
-//             endTag: '<!--css end-->',
-//             fileTmpl: '<link crossorigin="anonymous" href="/%s" media="all" rel="stylesheet" />',
-//             appRoot: 'app/'
-//         }))
-//         .pipe(rename('yeepay.html'))
-//         .pipe(gulp.dest('app'));
-// });
 
 gulp.task('buildlinker', function(done){
     return gulp.src('app/_index.html')
@@ -461,11 +405,6 @@ gulp.task('build:info', function (done) {
 });
 
 //编译angular-ui-boostrap
-// gulp.task('angular-ui-bootstrap:copy', function (done) {console.log('ok');
-//     gulp.src('other/angular-ui-boostrap/carousel/carousel.html').pipe(gulp.dest(path.join(__dirname,'bower_components/angular-ui-bootstrap/')));
-//     return gulp.src('other/angular-ui-boostrap/Gruntfile.js').pipe(gulp.dest(path.join(__dirname,'bower_components/angular-ui-bootstrap/')));
-// });
-
 gulp.task('angular-ui-bootstrap:build', function (done) {
     require('gulp-grunt')(gulp,{base:path.join(__dirname,'bower_components/angular-ui-bootstrap/')});
     seq('grunt-html2js','grunt-build');
@@ -475,37 +414,6 @@ gulp.task('angular-ui-bootstrap', function (done) {
     seq('angular-ui-bootstrap:copy', 'angular-ui-bootstrap:build');
 });
 
-/*===============================
- =            Test              =
- ===============================*/
-// gulp.task('test:unit', function (done) {
-//     var Server = require('karma').Server;
-//     new Server({
-//         configFile:__dirname+ '/test/karma.jenkins.conf.js',
-//         singleRun: true
-//     }, done).start();
-// });
-
-// gulp.task('test:protractor', function (done) {
-//     return gulp.src(["test/e2e/*.js"])
-//         .pipe(protractor({
-//             configFile: "test/protractor.jenkins.conf.js"
-//         }))
-//         .on('error', function(e) {
-//             console.log(e.message);
-//             throw e;
-//         });
-// });
-
-// gulp.task('test:e2e:stopServer', function(done){
-//     GLOBS.lieveServer.stop().then(function () {
-//         done();
-//     });
-// });
-
-// gulp.task('test:e2e', function (done) {
-//     seq('css:less', 'linker', 'nodemon', 'test:protractor', 'test:e2e:stopServer', 'exit');
-// });
 
 /*===============================
  =            Release           =
