@@ -41,12 +41,12 @@ var GLOBS = {};
 GLOBS.fonts                 = ['bower_components/font-awesome/fonts/fontawesome-webfont.*', 'bower_components/bootstrap/fonts/**'];
 GLOBS.vendorLess            = [ path.resolve(__dirname, 'app/less'), path.resolve(__dirname, 'bower_components'), path.resolve(__dirname) ];
 GLOBS.lieveServer = null;
-GLOBS.fakeServerSshConfig = {
-    host: 'fakeapi.fdjf.net',
-    port: 22,
-    user: 'wechat',
-    key : path.homedir()+'/.ssh/wechat.key'
-};
+// GLOBS.fakeServerSshConfig = {
+//     host: 'fakeapi.fdjf.net',
+//     port: 22,
+//     user: 'wechat',
+//     key : path.homedir()+'/.ssh/wechat.key'
+// };
 GLOBS.appConfig = JSON.parse(fs.readFileSync('config/app.json'));
 // GLOBS.fakeapiRemoteRootPath = '/home/wechat/www/fakeapi';
 // GLOBS.fakeappRemoteRootPath = '/home/wechat/www/fakeapp';
@@ -293,8 +293,8 @@ gulp.task('clinker', function (done) {
             fileTmpl: '<link crossorigin="anonymous" href="/%s" media="all" rel="stylesheet/less" type="text/css" />',
             appRoot: 'app/'
         }))
-        .pipe(rename('index.html'))
-        .pipe(gulp.dest('./css_example'));
+        .pipe(rename('index.html'));
+        // .pipe(gulp.dest('./css_example'));
 });
 
 gulp.task('buildlinker', function(done){
@@ -321,24 +321,24 @@ gulp.task('buildlinker', function(done){
  =            Docs                   =
  ====================================*/
 
-gulp.task('docs', function(done){
-    var gulpDocs = require('gulp-ngdocs');
-    var options = {
-        html5Mode: false
-    };
-    return gulp.src(['app/scripts/*.js','app/scripts/*/*.js'])
-        .pipe(gulpDocs.process(options))
-        .pipe(gulp.dest('./docs'))
-        .pipe(sftp(_.extend({remotePath:GLOBS.fakeapiRemoteRootPath+'/docs'}, GLOBS.fakeServerSshConfig)));
-});
+// gulp.task('docs', function(done){
+//     var gulpDocs = require('gulp-ngdocs');
+//     var options = {
+//         html5Mode: false
+//     };
+//     return gulp.src(['app/scripts/*.js','app/scripts/*/*.js'])
+//         .pipe(gulpDocs.process(options))
+//         .pipe(gulp.dest('./docs'))
+//         .pipe(sftp(_.extend({remotePath:GLOBS.fakeapiRemoteRootPath+'/docs'}, GLOBS.fakeServerSshConfig)));
+// });
 
-gulp.task('cssdocs', function(done){
-    gulp.src(['css_example/**'])
-        .pipe(sftp(_.extend({remotePath:GLOBS.fakeapiRemoteRootPath+'/css_example'}, GLOBS.fakeServerSshConfig)));
-    gulp.src(['app/less/**'])
-        .pipe(sftp(_.extend({remotePath:GLOBS.fakeapiRemoteRootPath+'/app/less'}, GLOBS.fakeServerSshConfig)));
+// gulp.task('cssdocs', function(done){
+//     gulp.src(['css_example/**'])
+//         .pipe(sftp(_.extend({remotePath:GLOBS.fakeapiRemoteRootPath+'/css_example'}, GLOBS.fakeServerSshConfig)));
+//     gulp.src(['app/less/**'])
+//         .pipe(sftp(_.extend({remotePath:GLOBS.fakeapiRemoteRootPath+'/app/less'}, GLOBS.fakeServerSshConfig)));
 
-});
+// });
 
 /*====================================
  =            Default Task            =
@@ -363,14 +363,14 @@ gulp.task('build', function(done){
     seq('css:less', ['css:minify','js:minify', 'js:templates:view', 'js:templates:directive', 'fonts','images','build:info'],'buildlinker',done);
 });
 
-gulp.task('deploy:fake:upload', function () {
-    return gulp.src(['app/dist/**'])
-        .pipe(sftp(_.extend({remotePath:GLOBS.fakeappRemoteRootPath}, GLOBS.fakeServerSshConfig)));
-});
+// gulp.task('deploy:fake:upload', function () {
+//     return gulp.src(['app/dist/**'])
+//         .pipe(sftp(_.extend({remotePath:GLOBS.fakeappRemoteRootPath}, GLOBS.fakeServerSshConfig)));
+// });
 
-gulp.task('deploy:fake', function (done) {
-    seq('build', 'deploy:fake:upload', done);
-});
+// gulp.task('deploy:fake', function (done) {
+//     seq('build', 'deploy:fake:upload', done);
+// });
 
 gulp.task('deploy:real:upload', function () {
     return gulp.src(['app/dist/**'])

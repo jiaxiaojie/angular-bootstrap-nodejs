@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use('/docs',express.static(path.join(__dirname, 'docs')));
 app.use('/config',express.static(path.join(__dirname, 'config')));
 //app.use('/fakedocs',express.static(path.join(__dirname, 'fakedocs')));
-app.use('/css_example',express.static(path.join(__dirname, 'css_example')));
+// app.use('/css_example',express.static(path.join(__dirname, 'css_example')));
 
 //test
 //app.get(/^\/dist\/(?!(images|css|log)).*/, function (req,res,next) {

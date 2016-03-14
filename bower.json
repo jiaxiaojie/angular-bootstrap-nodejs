@@ -1,8 +1,8 @@
 {
-  "name": "hsbank-wechat",
+  "name": "flora",
   "version": "0.0.0",
   "authors": [
-    "QT<qiangqiang@xmdqq.com>"
+    "Flora"
   ],
   "license": "MIT",
   "ignore": [

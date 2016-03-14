@@ -1,5 +1,5 @@
 ﻿{
-  "name": "hsbank-wechat",
+  "name": "flora",
   "version": "0.0.1",
   "description": "for mobile prototype and wechat mobile html5",
   "main": "app/app.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./bin/www"
   },
-  "author": "QT",
+  "author": "Flora",
   "license": "ISC",
   "devDependencies": {
     "express":"",
