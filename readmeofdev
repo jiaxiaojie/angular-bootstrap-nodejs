@@ -1,0 +1,179 @@
+## 设置WebStorm的字符集：
+
++ File --> Settings --> Editor --> File Encodings
+
+```
+IDE encoding: UTF-8
+Project encoding: UTF-8
+```
+
+## 字体资源
+
+```
+https://www.hsbank360.com/fonts/HelveticaNeueLTPro-UltLt_0.otf
+https://www.hsbank360.com/fonts/SourceHanSansCN-Bold.otf
+https://www.hsbank360.com/fonts/SourceHanSansCN-ExtraLight.otf
+https://www.hsbank360.com/fonts/SourceHanSansCN-Heavy.otf
+https://www.hsbank360.com/fonts/SourceHanSansCN-Light.otf
+https://www.hsbank360.com/fonts/SourceHanSansCN-Medium.otf
+https://www.hsbank360.com/fonts/SourceHanSansCN-Normal.otf
+https://www.hsbank360.com/fonts/SourceHanSansCN-Normal.ttf
+https://www.hsbank360.com/fonts/SourceHanSansCN-Regular.otf
+```
+
+## 花生金服
+
+```
+https://www.hsbank360.com/hsbank/favicon.ico
+```
+
+## 运行本工程的先决条件：
+
++ 安装nodejs和npm
+
+1. 从官网`https://nodejs.org/en/`下载nodejs安装文件，一般选LTS(Long Term Support,长时间支持版本)版本即可
+2. 点击安装
+3. 用 `node -v` 或 `npm -v` 查看是否安装成功
+
++ 安装cnpm
+
+```
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install bower grunt grunt-cli gulp -g
+```
+
++ 设置环境变量
+
+```
+设置系统环境变量 【CHROMEDRIVER_CDNURL】 为 【http://oss-cn-hangzhou.aliyuncs.com/cnpm/dist/chromedriver/】
+```
+
+## 搭建和运行本工程的步骤
+
++ git clone 版本库到目标目录，如：D:/hsbank_wechat_activity
+
++ 安装bower和nodejs的依赖
+
+Windows下，执行以下命令，需要以管理员身份打开cmd或者powershell
+
+```
+cd d:/hsbank_wechat_activity
+bower install
+cnpm install
+cd bower_components/angular-ui-bootstrap
+cnpm install
+grunt build
+```
+
+*如果执行`cnpm install`出错，请重复执行多次，直到安装成功*
+
+## 运行命令
+
++ 调试前端或者模拟接口 `gulp`
+
++ 生成并上传模拟接口文档 `gulp fakedocs`
+
++ 远程同步模拟接口 `gulp fakeroutes`
+
++ CSS组件开发测试 `gulp csstest`
+
++ 正式环境编译部署 `gulp deploy:real`
+
++ 测试环境编译部署 `gulp deploy:fake`
+
+
+## 配置文件
+    
++ 拷贝`config/app.default.json` 到 `config/app.json` 这个文件是一些绑定到部署环境的配置
+
+    ```
+    {
+      "apiBaseUrl":"https://www.XXX.com/f", //api 地址
+      "appRoot":"app/dist/",//正式环境部署用 app/dist/，测试环境用 app/
+      "version":"1.0.0",//正式环境每次重新build时，需要更改这个数字，这个数字对应到git的tag
+      "wechatShare":{    //微信分享接口默认参数
+           "title":"花生金服",   //默认标题
+           "desc":"花生金服",    //默认描述
+           "imgUrl":"/images/app/logo.png"    //默认图片地址
+       },
+         "hjxc":{   //和记小菜接口地址
+           "grantTicket":"/a/channel/interface/grantTicket",    //发卷接口
+           "queryTicketInfosByMobile":"/a/channel/interface/queryTicketInfosByMobile",  //根据用户手机号查询卷详情接口
+           "channelCode":"",    //渠道编码
+           "agreeCode":"12345"  //约定码
+       },
+          "register":{ //添加一个wifi落地页全局参数，需要添加在WIFI落地页LINK（发送验证码）这个按钮上。
+            "url":"http://sammix.adsame.com/t?z=sammix&id=1216866"
+          }
+    }
+    ```
+
++ 拷贝`config/log.default.json` 到 `config/log.json` 这个文件是一些绑定到部署环境的配置
+
+    ```
+    {
+      "enabled" : true, //是否启动log日志
+      "defaultLevel" : "log", //默认日志级别
+      "consolePrint":true, //是否打印控制台
+      "alertLevel":"debug", //alert 日志级别
+      "appenders":[  //发送远程请求的对象
+          {
+            "levels":["warn","error"], //需要发送的日志级别
+            "remote" :"http://localhost:3000/log" //接口
+          }
+      ],
+      "allowReplace":true  //是否允许改变配置
+    }
+    ```
+
++ 拷贝`config/config.default.less` 到 `config/config.less` 这个文件是一些绑定到部署环境的配置
+
+    ```
+    @img-path:            '/images'; //图片路径，可以指向cdn
+    @event-path:            '/event'; //活动图片路径
+    @img-version:            '?v=1.0.0'; //图片版本，用于清除浏览器缓存 
+    @fa-font-path:        '/fonts'; //正式环境用 '/fonts' 测试环境 '/font-awesome/fonts'  
+    @icon-font-path:        '/fonts/'; //正式环境 '/fonts/' 测试环境 '/bootstrap/fonts/'
+    ```
+
++ jenkins CI路径 http://192.168.5.31:8080/job/wechat jenkins部署在192.168.5.20的虚拟机上,通过git触发
+
++ http访问 http://localhost:3000    https访问 https://localhost:3000
+
+# [JS karma unit test](test/README.md##js-karma-unit-test)
+# [protractor e2e test](test/README.md#protractor-e2e-test)
+
+# 其他
++ 服务器端可以使用forever启动监听：forever -w --watchDirectory /var/www/hswechat-fakeserver/routes start /var/www/hswechat-fakeserver/bin/www
+
+# 部署
++ 确认git分支正确
++ 修改 `config/app.json` `deployServer` 字段
++ privateKey 是ssh私钥
++ 运行 `gulp deploy:real`
+
+# markdown 语法
+
++ http://daringfireball.net/projects/markdown/syntax
+
++ http://www.appinn.com/markdown/
+
+# 全局参数列表
++ 全局参数可以通过get参数形式注入 http://domain.com?m=MTU4MDA4MDQ2MDk=&regm=MTU4MDA4MDQ2MDk=
++ `ad`  推广渠道，页面从哪个渠道导入进来的，包括广告渠道或者ios、Android APP等
++ `subid` 渠道用户ID，对应ad参数
++ `m`  默认推荐人手机号码(base64Encode后的结果)
++ `regm` 默认注册用户的手机号码(base64Encode后的结果)
++ `_hideNavbar` 隐藏全局顶部导航栏和标题栏
++ `_hideNavbarBottom` 隐藏全局底部tab导航栏
+
+# state.data 参数列表
++ `$navbarDirection`  push
++ `$navbarTitle`  页面标题
++ `$navbarShow`  显示Navbar
++ `activityCode` [活动code](https://fakeapi.fdjf.net:3000/fakedocs/#/api/event.activityCode)
++ `$platformType` 分享平台的十进制值【微信好友（1<< 0）微信朋友圈（1<<1）QQ（1<<2）QQ空间（1<<3）新浪微博（1<<4） 】 0表示分享所有平台  
++ `$wechatShareTitle` 分享的标题
++ `$wechatShareDesc` 分享的描述
++ `$wechatShareImgUrl` 分享的图片
++ `$wechatShareLink` 分享的地址
